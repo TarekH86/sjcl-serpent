@@ -1,6 +1,14 @@
 sjcl
 ====
 
+Addendum by mjal
+===
+SERPENT ALGORITHM
+---
+A slow version of a crypto algorithm in JS. The Serpent algorithm
+May be as secure as AES (or Rijndael) and 3th in AES challenge.
+
+
 [![Build Status](https://travis-ci.org/bitwiseshiftleft/sjcl.png)](https://travis-ci.org/bitwiseshiftleft/sjcl)
 
 Stanford Javascript Crypto Library
@@ -19,3 +27,4 @@ Keyserver: pool.sks-keyservers.net
 Documentation
 ====
 The documentation is available [here](http://bitwiseshiftleft.github.io/sjcl/doc/)
+
