@@ -14,8 +14,16 @@ sjcl.ecc.point = function(curve,x,y) {
   if (x === undefined) {
     this.isIdentity = true;
   } else {
+    if (x instanceof sjcl.bn) {
+      x = new curve.field(x);
+    }
+    if (y instanceof sjcl.bn) {
+      y = new curve.field(y);
+    }
+
     this.x = x;
     this.y = y;
+
     this.isIdentity = false;
   }
   this.curve = curve;
@@ -442,7 +450,16 @@ sjcl.ecc.elGamal.secretKey.prototype = {
   */
   dh: function(pk) {
     return sjcl.hash.sha256.hash(pk._point.mult(this._exponent).toBits());
-  }
+  },
+  
+  /** Diffie-Hellmann function, compatible with Java generateSecret
+   * @param {elGamal.publicKey} pk The Public Key to do Diffie-Hellmann with
+   * @return {bitArray} undigested X value, diffie-hellmann result for this key combination,
+   * compatible with Java generateSecret().
+   */
+   dhJavaEc: function(pk) {
+     return pk._point.mult(this._exponent).x.toBits();
+   }
 };
 
 /** ecdsa keys */
